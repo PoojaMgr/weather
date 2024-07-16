@@ -8,10 +8,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <InputField/>
-        <Dashboard/>
-        
+        <InputField/>        
       </header>
+      <section className='App-body'>
+        <Dashboard/>
+      </section>
     </div>
   );
 }
