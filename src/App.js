@@ -34,11 +34,12 @@ function App() {
     if (cityName) {
       getWeatherBasedOnCity(cityName).then((weather) => {
         setWeatherData(weather);
-        getIcon(weather?.weather?.[0]?.icon).then((response) =>
-          response.blob().then((blobResponse) => {
-            setWeatherIcon(URL.createObjectURL(blobResponse));
-          })
-        );
+        weather?.weather?.[0]?.icon &&
+          getIcon(weather?.weather?.[0]?.icon).then((response) =>
+            response.blob().then((blobResponse) => {
+              setWeatherIcon(URL.createObjectURL(blobResponse));
+            })
+          );
       });
     }
 
@@ -46,20 +47,17 @@ function App() {
       const timer = setTimeout(() => {
         getWeatherBasedOnCity(cityFromInputField).then((weather) => {
           setWeatherData(weather);
-          getIcon(weather?.weather?.[0]?.icon).then((response) =>
-            response.blob().then((blobResponse) => {
-              setWeatherIcon(URL.createObjectURL(blobResponse));
-            })
-          );
+          console.log(weather);
+          weather?.weather?.[0]?.icon &&
+            getIcon(weather?.weather?.[0]?.icon).then((response) =>
+              response.blob().then((blobResponse) => {
+                setWeatherIcon(URL.createObjectURL(blobResponse));
+              })
+            );
         });
-      }, 3000);
+      }, 5000);
       return () => clearTimeout(timer);
     }
-    getIcon("04d").then((response) =>
-      response.blob().then((blobResponse) => {
-        setWeatherIcon(URL.createObjectURL(blobResponse));
-      })
-    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityName, cityFromInputField]);
 
@@ -67,12 +65,19 @@ function App() {
     <LocationContext.Provider value={cityName}>
       <WeatherContext.Provider value={weatherData}>
         <div className="App">
+          {weatherData === null ? (
+            <div class="fa-3x">
+              <i class="fas fa-spinner fa-pulse" />
+            </div>
+          ) : null}
           <header className="App-header">
             {" "}
             <InputField setCityFromInputFields={setCityFromInputField} />
           </header>
           <section className="App-body">
-            <img src={weatherIcon} className="App-logo" alt="logo" />
+            {weatherData?.weather?.[0]?.icon && (
+              <img src={weatherIcon} className="App-logo" alt="logo" />
+            )}
             <Dashboard cityFromInputFields={cityFromInputField} />
           </section>
         </div>

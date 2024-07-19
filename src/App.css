@@ -6,7 +6,7 @@
   background-color: rgb(142, 210, 232);
   height: 100vh;
   text-align: center;
-  font-size: calc(10px + 2vmin);  
+  font-size: calc(12px + 2vmin);  
   color: white;
 }
 .App-header {

@@ -17,9 +17,12 @@ const getWeatherBasedOnCity = async (cityName) => {
 };
 
 const getIcon = async (param) => {
-  const getWeatherIcon = await fetch(
-    `https://openweathermap.org/img/wn/${param}.png`
-  );
+  let getWeatherIcon;
+  if (param !== undefined) {
+    getWeatherIcon = await fetch(
+      `https://openweathermap.org/img/wn/${param}.png`
+    );
+  }
 
   return getWeatherIcon;
 };

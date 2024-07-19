@@ -7,7 +7,7 @@ const Dashboard = () => {
 
   return (
     <div className="info">
-      {weatherData.cod === "404" ? (
+      {!weatherData?.name ? (
         <h3>Uhh ohh, city not found!</h3>
       ) : (
         <>
