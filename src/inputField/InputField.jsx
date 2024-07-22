@@ -5,10 +5,6 @@ import { LocationContext } from "../App";
 export default function InputField({ setCityFromInputFields }) {
   const city = useContext(LocationContext);
 
-  const captureValue = (e) => {
-    setCityFromInputFields(e.target.value);
-  };
-
   // useEffect(() => {
 
   // const fetchApi = async () => {
@@ -31,9 +27,8 @@ export default function InputField({ setCityFromInputFields }) {
           type="search"
           className="inputField"
           placeholder="Search for location"
-          // value={city.name}
           defaultValue={city}
-          onChange={(e) => captureValue(e)}
+          onChange={(e) => setCityFromInputFields(e.target.value)}
         />
         <i className="fa fa-search icon" aria-hidden="true" />
       </div>

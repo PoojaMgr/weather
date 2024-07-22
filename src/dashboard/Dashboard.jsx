@@ -4,7 +4,6 @@ import { WeatherContext } from "../App";
 
 const Dashboard = () => {
   const weatherData = useContext(WeatherContext);
-  console.log(weatherData, "weatherData");
 
   return (
     <div className="info">

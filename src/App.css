@@ -4,19 +4,19 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(142, 210, 232);
-  height: 100vh;
   text-align: center;
   font-size: calc(12px + 2vmin);  
   color: white;
   background-image: linear-gradient(to top, rgb(242 235 235 / 0%), rgb(0 98 255));
+  min-height: 100vh;
   /* width: 50vh;
   padding: 5px;
   box-shadow: 5px 10px 8px 10px #888888; */
 }
 .App-header {
   /* background-color: green; */
-  /* min-height: 30vh;   */
-  padding: 2vh;
+  min-height: 35vh;  
+  /* padding: 2vh; */
   /* background-image: image(''); */
 }
 .App-body {
@@ -36,6 +36,9 @@
     width: 100%;
     /* padding: 2px; */
     box-shadow: none;
+  }
+  .App-header {
+    min-height: 40vh;
   }
 
 }

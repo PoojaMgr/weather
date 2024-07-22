@@ -1,7 +1,7 @@
 import { fetchData } from "./customHooks/useFetch";
 
 const getCityName = async (param) => {
-  const { latitude, longitude } = param;
+  const { latitude, longitude } = param || {};
   const city = await fetchData(
     `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
   );
@@ -18,6 +18,7 @@ const getWeatherBasedOnCity = async (cityName) => {
 
 const getIcon = async (param) => {
   let getWeatherIcon;
+  console.log(param, "param");
   if (param !== undefined) {
     getWeatherIcon = await fetch(
       `https://openweathermap.org/img/wn/${param}.png`
