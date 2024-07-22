@@ -4,10 +4,11 @@ import { WeatherContext } from "../App";
 
 const Dashboard = () => {
   const weatherData = useContext(WeatherContext);
+  console.log(weatherData, "weatherData");
 
   return (
     <div className="info">
-      {!weatherData?.name ? (
+      {weatherData?.message === "bad query" ? (
         <h3>Uhh ohh, city not found!</h3>
       ) : (
         <>
