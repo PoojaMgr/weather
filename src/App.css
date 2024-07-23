@@ -3,11 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(142, 210, 232);
+  /* background-color: rgb(142, 210, 232); */
   text-align: center;
   font-size: calc(12px + 2vmin);  
   color: white;
-  background-image: linear-gradient(to top, rgb(242 235 235 / 0%), rgb(0 98 255));
+  background-image: linear-gradient(to top, rgb(0 98 255 / 17%), rgb(0 98 255));
   min-height: 100vh;
   /* width: 50vh;
   padding: 5px;
@@ -15,8 +15,8 @@
 }
 .App-header {
   /* background-color: green; */
-  min-height: 35vh;  
-  /* padding: 2vh; */
+  /* min-height: 35vh;   */
+  padding: 2vh;
   /* background-image: image(''); */
 }
 .App-body {
@@ -31,14 +31,14 @@
   object-fit: contain;
 }
 
-@media only screen and (max-width: 430px) { 
+@media only screen and (min-width: 430px) { 
   .App{
     width: 100%;
     /* padding: 2px; */
     box-shadow: none;
   }
   .App-header {
-    min-height: 40vh;
+    min-height: 35vh;
   }
 
 }
