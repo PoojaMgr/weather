@@ -3,7 +3,7 @@ import "./Main.css";
 // import sky from "./sky.svg";
 import InputField from "../inputField/InputField";
 import Dashboard from "../dashboard/Dashboard";
-import { getCoordinatesHandler } from "../Utils/Utils";
+import { getCoordinatesHandler } from "../utils/coordinates";
 import { getCityName, getWeatherBasedOnCity, getIcon } from "../api/fetchCalls";
 
 export const LocationContext = createContext(null);
