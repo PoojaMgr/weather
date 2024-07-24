@@ -3,8 +3,8 @@ import "./Main.css";
 // import sky from "./sky.svg";
 import InputField from "../inputField/InputField";
 import Dashboard from "../dashboard/Dashboard";
-import { getCoordinates } from "../Utils/Utils";
-import { getCityName, getWeatherBasedOnCity, getIcon } from "../Utils/ApiCalls";
+import { getCoordinatesHandler } from "../Utils/Utils";
+import { getCityName, getWeatherBasedOnCity, getIcon } from "../api/fetchCalls";
 
 export const LocationContext = createContext(null);
 export const WeatherContext = createContext(null);
@@ -40,7 +40,7 @@ function MainComponent() {
   };
 
   useEffect(() => {
-    getCoordinates(coordinatesCallbackFn);
+    getCoordinatesHandler(coordinatesCallbackFn);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

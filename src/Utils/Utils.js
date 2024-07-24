@@ -17,7 +17,7 @@ const showError = (error) => {
   }
 };
 
-const getCoordinates = (showPosition) => {
+const getCoordinatesHandler = (showPosition) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
@@ -25,4 +25,4 @@ const getCoordinates = (showPosition) => {
   }
 };
 
-export { getCoordinates };
+export { getCoordinatesHandler };
