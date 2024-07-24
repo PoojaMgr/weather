@@ -1,15 +1,15 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import MainComponent from "../MainComponent";
-import * as UtilsMethods from "../../Utils/Utils";
+import * as UtilsMethods from "../../utils/coordinates";
 
-UtilsMethods.getCoordinates = jest
+UtilsMethods.getCoordinatesHandler = jest
   .fn()
   .mockImplementation((callbackFn) =>
     callbackFn({ coords: { latitude: "mockLat", longitude: "mockLong" } })
   );
 
-jest.mock("../../Utils/ApiCalls", () => {
-  const originalModule = jest.requireActual("../../Utils/ApiCalls");
+jest.mock("../../api/fetchCalls", () => {
+  const originalModule = jest.requireActual("../../api/fetchCalls");
   return {
     // __esModule: true, // Use it when dealing with esModules
     ...originalModule,
@@ -71,12 +71,12 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-// global.alert = jest.fn();
+global.alert = jest.fn();
 
 test("Fetch weather api and renders all weather data information", async () => {
   render(<MainComponent />);
   await waitFor(() => {
-    expect(UtilsMethods.getCoordinates).toHaveBeenCalled();
+    expect(UtilsMethods.getCoordinatesHandler).toHaveBeenCalled();
   });
 
   await waitFor(() => {

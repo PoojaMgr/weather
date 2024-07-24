@@ -1,4 +1,4 @@
-import { fetchData } from "../customHooks/useFetch";
+import { fetchData } from "../utils/fetchData";
 
 const getCityName = async (param) => {
   const { latitude, longitude } = param || {};
@@ -9,7 +9,6 @@ const getCityName = async (param) => {
 };
 
 const getWeatherBasedOnCity = async (cityName) => {
-  // const { latitude, longitude } = param;
   const cityWeather = await fetchData(
     `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=990daa7cdfb0ac2560296f2ca762eec2`
   );
@@ -18,7 +17,6 @@ const getWeatherBasedOnCity = async (cityName) => {
 
 const getIcon = async (param) => {
   let getWeatherIcon;
-  console.log(param, "param");
   if (param !== undefined) {
     getWeatherIcon = await fetch(
       `https://openweathermap.org/img/wn/${param}.png`
