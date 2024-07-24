@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Dashboard.css";
-import { WeatherContext } from "../App";
+import { WeatherContext } from "../main/MainComponent";
 
 const Dashboard = () => {
   const weatherData = useContext(WeatherContext);

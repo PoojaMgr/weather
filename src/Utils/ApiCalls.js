@@ -1,4 +1,4 @@
-import { fetchData } from "./customHooks/useFetch";
+import { fetchData } from "../customHooks/useFetch";
 
 const getCityName = async (param) => {
   const { latitude, longitude } = param || {};

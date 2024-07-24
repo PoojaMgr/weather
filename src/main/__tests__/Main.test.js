@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import App from "../App";
-import * as UtilsMethods from "../Utils";
-// import { mockWeatherResponse } from "../__mocks__/weatherDataResponse";
+import MainComponent from "../MainComponent";
+import * as UtilsMethods from "../../Utils/Utils";
 
 UtilsMethods.getCoordinates = jest
   .fn()
@@ -9,13 +8,13 @@ UtilsMethods.getCoordinates = jest
     callbackFn({ coords: { latitude: "mockLat", longitude: "mockLong" } })
   );
 
-jest.mock("../ApiCalls", () => {
-  const originalModule = jest.requireActual("../ApiCalls");
+jest.mock("../../Utils/ApiCalls", () => {
+  const originalModule = jest.requireActual("../../Utils/ApiCalls");
   return {
     // __esModule: true, // Use it when dealing with esModules
     ...originalModule,
     getCityName: jest.fn().mockResolvedValue({ locality: "Noida" }),
-    getIcon: jest.fn().mockResolvedValue(console.log()),
+    getIcon: jest.fn().mockResolvedValue(),
     getWeatherBasedOnCity: jest.fn().mockResolvedValue({
       coord: {
         lon: 77.33,
@@ -68,21 +67,20 @@ jest.mock("../ApiCalls", () => {
   };
 });
 
-global.alert = jest.fn();
+afterEach(() => {
+  jest.resetAllMocks();
+});
 
-describe("App", () => {
-  it("should do window load", async () => {
-    // const alertMock = jest.spyOn(window, "alert").mockImplementation();
-    render(<App />);
-    await waitFor(() => {
-      expect(UtilsMethods.getCoordinates).toHaveBeenCalled();
-    });
+// global.alert = jest.fn();
+
+test("Fetch weather api and renders all weather data information", async () => {
+  render(<MainComponent />);
+  await waitFor(() => {
+    expect(UtilsMethods.getCoordinates).toHaveBeenCalled();
   });
-  it("should check for logo", async () => {
-    render(<App />);
-    await waitFor(() => {
-      const imgElement = screen.getByAltText("logo");
-      expect(imgElement).toBeInTheDocument();
-    });
+
+  await waitFor(() => {
+    const imgElement = screen.getByAltText("logo");
+    expect(imgElement).toBeInTheDocument();
   });
 });
