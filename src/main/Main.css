@@ -1,44 +1,61 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* background-color: rgb(142, 210, 232); */
-    text-align: center;
-    font-size: calc(12px + 2vmin);  
-    color: white;
-    background-image: linear-gradient(to top, rgb(0 98 255 / 17%), rgb(0 98 255));
-    min-height: 100vh;
-    /* width: 50vh;
-    padding: 5px;
-    box-shadow: 5px 10px 8px 10px #888888; */
+.main{
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to top, rgb(0 98 255 / 17%), rgb(0 98 255));
+  height: 100vh;
+  overflow: hidden;
+  gap: 25px;
+}
+.main-header {
+  padding: 2vh;
+}
+
+/* Extra Small (XS)*/
+@media (max-width: 576px) {
+  /* CSS styles for Extra Small screens */
+}
+
+/* Small (S) */
+@media (min-width: 576px) and (max-width: 767px) {
+  /* CSS styles for Small screens */
+}
+
+/* Medium (M) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* CSS styles for Medium screens */
+
+ 
+}
+
+/* Large (L) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* CSS styles for Large screens */
+}
+
+
+@media(min-width: 344px) and (max-width: 355px){
+  .main{
+    gap: 98px;
   }
-  .main-header {
-    /* background-color: green; */
-    /* min-height: 35vh;   */
-    padding: 2vh;
-    /* background-image: image(''); */
+}
+
+@media(min-width: 360px) and (max-width: 412px){
+  .main{
+    gap: 100px;
   }
-  .main-body {
-    /* background-color: red; */
-    height: 100%;
-    width: 100%;
+}
+@media(min-width: 413px) and (max-width: 991px){
+  .main{
+    gap: 85px;
   }
-  
-  .main-logo {
-    max-width: 100%;
-    height: 100px;
-    object-fit: contain;
+}
+
+
+
+/* Extra Large (XL) */
+@media (min-width: 1200px) {
+  /* CSS styles for Extra Large screens */
+  .main-header{
+    padding: 33px 0 0 107px
   }
-  
-  @media only screen and (min-width: 430px) { 
-    .main{
-      width: 100%;
-      /* padding: 2px; */
-      box-shadow: none;
-    }
-    .main-header {
-      min-height: 35vh;
-    }
-  
-  }
+}

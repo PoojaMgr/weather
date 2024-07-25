@@ -60,12 +60,7 @@ function MainComponent() {
             {/* <img src={weatherIcon} alt="sky" /> */}
           </header>
           <br></br>
-          <section className="main-body">
-            {weatherData?.weather?.[0]?.icon && (
-              <img src={weatherIcon} className="main-logo" alt="logo" />
-            )}
-            <Dashboard cityFromInputFields={cityFromInputField} />
-          </section>
+            <Dashboard cityFromInputFields={cityFromInputField} weatherIcon={weatherIcon}/>
         </div>
       </WeatherContext.Provider>
     </LocationContext.Provider>

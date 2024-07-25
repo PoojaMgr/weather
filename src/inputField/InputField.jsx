@@ -7,7 +7,7 @@ export default function InputField({ setCityFromInputFields }) {
 
   return (
     <>
-      <div className="mainDiv">
+      <div className="inputMain">
         <i className="fas fa-location-arrow icon" aria-hidden="true" />
         <input
           type="search"

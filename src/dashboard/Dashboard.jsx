@@ -2,15 +2,19 @@ import React, { useContext } from "react";
 import "./Dashboard.css";
 import { WeatherContext } from "../main/MainComponent";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const weatherData = useContext(WeatherContext);
+  const { weatherIcon } = props;
 
   return (
-    <div className="info">
+    <div className="main-body">
       {weatherData?.message === "bad query" ? (
         <h3>Uhh ohh, city not found!</h3>
       ) : (
-        <>
+        <div className="dashboard">
+          {weatherData?.weather?.[0]?.icon && (
+              <img src={weatherIcon} className="main-logo" alt="logo" />
+            )}
           <h3 className="location">{weatherData?.name}</h3>
           <h1>
             {" "}
@@ -21,7 +25,7 @@ const Dashboard = () => {
           <p>
             H:{weatherData?.main?.temp_max}° L:{weatherData?.main?.temp_min}°
           </p>
-        </>
+        </div>
       )}
     </div>
   );
