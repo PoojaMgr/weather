@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import "./Main.css";
-// import sky from "./sky.svg";
+import showLoader from "../loader.svg";
 import InputField from "../inputField/InputField";
 import Dashboard from "../dashboard/Dashboard";
 import { getCoordinatesHandler } from "../utils/coordinates";
@@ -14,6 +14,7 @@ function MainComponent() {
   const [weatherData, setWeatherData] = useState({});
   const [weatherIcon, setWeatherIcon] = useState(null);
   const [cityFromInputField, setCityFromInputField] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const coordinatesCallbackFn = async (pos) => {
     const crd = pos.coords;
@@ -31,6 +32,7 @@ function MainComponent() {
   const getWeather = async (cityName) => {
     const weatherData = await getWeatherBasedOnCity(cityName);
     setWeatherData(weatherData);
+    weatherData && setLoader(false);
     const iconString = weatherData?.weather?.[0]?.icon;
     const iconFile = iconString && (await getIcon(iconString));
     if (iconFile) {
@@ -40,14 +42,20 @@ function MainComponent() {
   };
 
   useEffect(() => {
+    setLoader(true);
     getCoordinatesHandler(coordinatesCallbackFn);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (cityFromInputField) {
-      getWeather(cityFromInputField);
-    }
+    const timer = setTimeout(() => {
+      if (cityFromInputField) {
+        setLoader(true);
+        getWeather(cityFromInputField);
+      }
+    }, 5000);
+
+    return () => clearInterval(timer);
   }, [cityFromInputField]);
 
   return (
@@ -60,7 +68,16 @@ function MainComponent() {
             {/* <img src={weatherIcon} alt="sky" /> */}
           </header>
           <br></br>
-            <Dashboard cityFromInputFields={cityFromInputField} weatherIcon={weatherIcon}/>
+          {!loader ? (
+            <Dashboard
+              cityFromInputFields={cityFromInputField}
+              weatherIcon={weatherIcon}
+            />
+          ) : (
+            <div className="loader">
+              <img src={showLoader} alt="loader" />{" "}
+            </div>
+          )}
         </div>
       </WeatherContext.Provider>
     </LocationContext.Provider>

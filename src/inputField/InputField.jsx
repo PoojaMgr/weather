@@ -5,6 +5,15 @@ import { LocationContext } from "../main/MainComponent";
 export default function InputField({ setCityFromInputFields }) {
   const city = useContext(LocationContext);
 
+  const handlerForInput = (event) => {
+    const value = event.target.value;
+    if (value === "") return;
+
+    if (value) {
+      setCityFromInputFields(value);
+    }
+  };
+
   return (
     <>
       <div className="inputMain">
@@ -14,7 +23,7 @@ export default function InputField({ setCityFromInputFields }) {
           className="inputField"
           placeholder="Search for location"
           defaultValue={city}
-          onChange={(e) => setCityFromInputFields(e.target.value)}
+          onChange={handlerForInput}
         />
         <i className="fa fa-search icon" aria-hidden="true" />
       </div>

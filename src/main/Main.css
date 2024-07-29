@@ -10,6 +10,12 @@
   padding: 2vh;
 }
 
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Extra Small (XS)*/
 @media (max-width: 576px) {
   /* CSS styles for Extra Small screens */
