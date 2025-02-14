@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages  # Trigger the action on every push to the 'gh-pages' branch
+      - develop  # Trigger the action on every push to the 'develop' branch
 
 jobs:
   build:
@@ -31,3 +31,7 @@ jobs:
           folder: build  # Folder to deploy (for React apps, it's 'build')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided GitHub token to authenticate deployment
+
+permissions:
+  contents: write  # Allow writing to the contents (push to gh-pages)
+  pages: write    # Allow writing to GitHub Pages
