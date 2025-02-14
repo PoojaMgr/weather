@@ -1,13 +1,33 @@
-name: 'coverage'
+name: Deploy to GitHub Pages
+
 on:
-    pull_request:
-        branches:
-            - master
-            - main
-            - develop
+  push:
+    branches:
+      - main  # Trigger the action on every push to the 'main' branch
+
 jobs:
-    coverage:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: ArtiomTr/jest-coverage-report-action@v2
+  build:
+    runs-on: ubuntu-latest  # This will use the latest version of Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This checks out your repository to the runner
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # This sets up Node.js
+        with:
+          node-version: '14'  # Use the Node.js version you're using
+
+      - name: Install dependencies
+        run: npm install  # Install the project's dependencies
+
+      - name: Build the app
+        run: npm run build  # This will build your app (e.g., in React)
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4  # GitHub Action to deploy to GitHub Pages
+        with:
+          branch: gh-pages  # The branch that GitHub Pages uses for the site (typically 'gh-pages')
+          folder: build  # Folder to deploy (for React apps, it's 'build')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided GitHub token to authenticate deployment
